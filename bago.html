@@ -1,0 +1,1264 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#6366f1">
+<title>DSWD Aid Assistance and Appointment Scheduling System</title>
+
+<style>
+:root {
+  --primary: #6366f1;
+  --primary-dark: #4f46e5;
+  --background: #ffffff;
+  --surface: #f8f9ff;
+  --text: #172033;
+  --muted: #667085;
+  --border: #e6e8f0;
+  --green: #16a36a;
+  --shadow: 0 20px 60px rgba(36, 42, 88, .12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, "Segoe UI", Arial, sans-serif;
+  background: var(--background);
+  color: var(--text);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  font: inherit;
+}
+
+.container {
+  width: min(1120px, calc(100% - 40px));
+  margin: 0 auto;
+}
+
+/* NAVIGATION */
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 22px 0;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 800;
+  letter-spacing: -.5px;
+}
+
+.brand-mark {
+  width: 42px;
+  height: 42px;
+  display: block;
+  object-fit: contain;
+  border-radius: 13px;
+}
+
+.brand-copy {
+  font-size: 14px;
+  line-height: 1.3;
+}
+
+.brand-copy small {
+  display: block;
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 24px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.nav-links a:hover {
+  color: var(--primary);
+}
+
+.nav-actions,
+.hero-buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--border);
+  border-radius: 11px;
+  padding: 12px 18px;
+  font-size: 13px;
+  font-weight: 750;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+.btn-primary:hover {
+  background: var(--primary-dark);
+}
+
+.btn-secondary {
+  background: white;
+  color: var(--text);
+}
+
+/* HERO */
+
+.hero {
+  padding: 70px 0 80px;
+  background:
+    radial-gradient(ellipse at 10% 10%, #eef2ff, transparent 45%),
+    radial-gradient(ellipse at 90% 50%, #f2edff, transparent 40%);
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: .95fr 1.05fr;
+  gap: 45px;
+  align-items: center;
+}
+
+.eyebrow {
+  display: inline-block;
+  padding: 9px 13px;
+  background: #eef2ff;
+  color: var(--primary);
+  border-radius: 30px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+h1 {
+  font-size: clamp(38px, 4.7vw, 57px);
+  line-height: 1.08;
+  letter-spacing: -2px;
+  margin: 24px 0 20px;
+}
+
+.gradient-text {
+  color: var(--primary);
+}
+
+.hero-copy {
+  max-width: 510px;
+  margin-bottom: 28px;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+.trust-note {
+  margin-top: 24px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* DASHBOARD MOCKUP */
+
+.dashboard {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.dash-top {
+  padding: 18px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.dash-content {
+  padding: 22px;
+}
+
+.dash-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.dash-heading h3 {
+  margin: 0 0 7px;
+  font-size: 19px;
+}
+
+.dash-heading p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.dash-tag {
+  padding: 8px;
+  background: #e9f9f1;
+  color: var(--green);
+  border-radius: 8px;
+  font-size: 9px;
+  white-space: nowrap;
+}
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.stat {
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.stat-label {
+  font-size: 10px;
+  color: var(--muted);
+}
+
+.stat-number {
+  font-size: 25px;
+  font-weight: 800;
+  margin: 10px 0 5px;
+}
+
+.stat-foot {
+  color: var(--green);
+  font-size: 9px;
+}
+
+.chart-card {
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 13px;
+}
+
+.chart-head {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.chart-head small {
+  color: var(--muted);
+}
+
+.chart {
+  height: 105px;
+  display: flex;
+  align-items: end;
+  gap: 10px;
+  border-bottom: 1px solid var(--border);
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0 24px,
+    #eef0f6 25px 26px
+  );
+}
+
+.bar {
+  flex: 1;
+  min-width: 8px;
+  background: linear-gradient(#818cf8, #6366f1);
+  border-radius: 5px 5px 0 0;
+}
+
+.chart-labels {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 8px;
+  color: var(--muted);
+  font-size: 9px;
+}
+
+/* SOCIAL PROOF */
+
+.social-proof {
+  padding: 28px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.proof-inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 25px;
+  text-align: center;
+}
+
+.dswd-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+  font-weight: 800;
+  text-align: left;
+}
+
+.seal {
+  width: 43px;
+  height: 43px;
+  object-fit: contain;
+}
+
+.proof-text {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.proof-text strong {
+  color: var(--text);
+}
+
+/* GENERAL SECTIONS */
+
+section {
+  padding: 85px 0;
+}
+
+.section-head {
+  max-width: 630px;
+  text-align: center;
+  margin: 0 auto 45px;
+}
+
+.kicker {
+  color: var(--primary);
+  font-size: 11px;
+  font-weight: 850;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+h2 {
+  font-size: clamp(29px, 3.5vw, 40px);
+  line-height: 1.2;
+  letter-spacing: -1.5px;
+  margin: 13px 0;
+}
+
+.section-head p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+/* FEATURES */
+
+.features,
+.requirements {
+  background: var(--surface);
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.feature-card {
+  padding: 27px;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: white;
+  transition: .2s;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow);
+}
+
+.feature-icon {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  background: #eef2ff;
+  color: var(--primary);
+  font-size: 23px;
+  margin-bottom: 23px;
+}
+
+.feature-card h3 {
+  font-size: 17px;
+  margin: 0 0 12px;
+}
+
+.feature-card p {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.8;
+  margin: 0;
+}
+
+/* HOW IT WORKS */
+
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+.step {
+  padding: 18px;
+  text-align: center;
+}
+
+.step-number {
+  width: 55px;
+  height: 55px;
+  display: grid;
+  place-items: center;
+  margin: 0 auto 20px;
+  border-radius: 18px;
+  background: #eef2ff;
+  color: var(--primary);
+  font-weight: 850;
+  font-size: 18px;
+}
+
+.step h3 {
+  font-size: 16px;
+}
+
+.step p {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+/* REQUIREMENTS */
+
+.requirements-grid {
+  display: grid;
+  grid-template-columns: .9fr 1.1fr;
+  gap: 55px;
+  align-items: center;
+}
+
+.requirement-visual {
+  padding: 28px;
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  background: linear-gradient(145deg, #eef2ff, white);
+}
+
+.paper {
+  max-width: 340px;
+  margin: auto;
+  padding: 24px;
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  background: white;
+  box-shadow: 0 12px 30px #1e293b0d;
+}
+
+.paper-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 15px;
+  border-bottom: 1px dashed var(--border);
+}
+
+.paper-seal {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+}
+
+.paper-header strong {
+  font-size: 10px;
+}
+
+.paper-header small {
+  display: block;
+  color: var(--muted);
+  font-size: 9px;
+  margin-top: 4px;
+}
+
+.paper-title {
+  margin: 20px 0;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 850;
+}
+
+.paper-line {
+  height: 7px;
+  margin: 13px 0;
+  border-radius: 5px;
+  background: var(--border);
+}
+
+.paper-line.short {
+  width: 60%;
+}
+
+.paper-stamp {
+  width: 100px;
+  margin: 25px auto 0;
+  padding: 10px;
+  border: 2px solid #10b981;
+  color: #059669;
+  text-align: center;
+  font-size: 10px;
+  font-weight: 900;
+  transform: rotate(-6deg);
+}
+
+.requirements-copy > p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.check-list {
+  list-style: none;
+  padding: 0;
+  margin: 25px 0;
+  display: grid;
+  gap: 17px;
+}
+
+.check-list li {
+  display: flex;
+  gap: 12px;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.check-list li span {
+  color: var(--green);
+  font-weight: 900;
+}
+
+.quote-card {
+  padding: 22px;
+  margin-top: 28px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: white;
+}
+
+.quote-card blockquote {
+  margin: 14px 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.quote-person {
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.quote-person small {
+  display: block;
+  color: var(--muted);
+  margin-top: 4px;
+  font-weight: 500;
+}
+
+/* FAQ */
+
+.faq {
+  max-width: 790px;
+  margin: auto;
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--border);
+}
+
+.faq-question {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 22px 2px;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  text-align: left;
+  font-size: 14px;
+  font-weight: 750;
+  cursor: pointer;
+}
+
+.faq-question span:last-child {
+  color: var(--primary);
+  font-size: 22px;
+}
+
+.faq-answer {
+  display: none;
+  padding: 0 30px 22px 2px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.9;
+}
+
+.faq-item.open .faq-answer {
+  display: block;
+}
+
+.faq-item.open .faq-question span:last-child {
+  transform: rotate(45deg);
+}
+
+/* CALL TO ACTION */
+
+.cta-band {
+  padding: 0 0 80px;
+}
+
+.cta-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+  padding: 45px;
+  border-radius: 24px;
+  background: linear-gradient(120deg, #6366f1, #4f46e5, #7c3aed);
+  color: white;
+}
+
+.cta-inner h2 {
+  margin-top: 0;
+}
+
+.cta-inner p {
+  color: #e0e7ff;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.cta-inner .btn {
+  background: white;
+  color: #4f46e5;
+}
+
+/* FOOTER */
+
+footer {
+  padding: 25px 0;
+  border-top: 1px solid var(--border);
+}
+
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.footer-links {
+  display: flex;
+  gap: 18px;
+}
+
+/* NOTIFICATION */
+
+.notice {
+  position: fixed;
+  left: 50%;
+  bottom: 20px;
+  transform: translate(-50%, 20px);
+  max-width: calc(100% - 32px);
+  padding: 14px 18px;
+  border-radius: 12px;
+  background: #172033;
+  color: white;
+  font-size: 12px;
+  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: .25s;
+  z-index: 10;
+}
+
+.notice.show {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+  .nav-links {
+    display: none;
+  }
+
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 35px;
+  }
+
+  .requirements-grid {
+    grid-template-columns: 1fr;
+    gap: 35px;
+  }
+}
+
+@media (max-width: 650px) {
+  .container {
+    width: calc(100% - 30px);
+  }
+
+  .brand-copy {
+    max-width: 170px;
+    font-size: 12px;
+  }
+
+  .nav-actions .btn-secondary {
+    display: none;
+  }
+
+  .hero {
+    padding: 45px 0 55px;
+  }
+
+  h1 {
+    font-size: 39px;
+  }
+
+  section {
+    padding: 60px 0;
+  }
+
+  .feature-grid,
+  .steps-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stat-grid {
+    gap: 6px;
+  }
+
+  .stat {
+    padding: 10px 7px;
+  }
+
+  .stat-number {
+    font-size: 19px;
+  }
+
+  .dash-content {
+    padding: 13px;
+  }
+
+  .dash-heading {
+    align-items: flex-start;
+  }
+
+  .dash-tag {
+    font-size: 8px;
+  }
+
+  .cta-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 28px 23px;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+</style>
+<link rel="stylesheet" href="theme.css">
+<script src="theme.js"></script>
+</head>
+
+<body>
+<div class="app-root">
+
+<header class="container nav">
+  <a class="brand" href="#home">
+    <img class="brand-mark" src="dswd.jpg" alt="DSWD logo">
+    <span class="brand-copy">
+      DSWD Aid Assistance
+      <small>Appointment Scheduling System</small>
+    </span>
+  </a>
+
+  <nav class="nav-links">
+    <a href="#features">Features</a>
+    <a href="#how-it-works">How it works</a>
+    <a href="#requirements">Requirements</a>
+    <a href="#faq">FAQs</a>
+  </nav>
+
+  <div class="nav-actions">
+    <a class="btn btn-secondary" href="applicant.html">Applicant</a>
+    <a class="btn btn-primary" href="staff.html">Staff Login ↗</a>
+    <button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false">Dark mode</button>
+  </div>
+</header>
+
+<main>
+
+<section class="hero" id="home">
+  <div class="container hero-grid">
+
+    <div>
+      <div class="eyebrow">Support, made simpler</div>
+
+      <h1>
+        Tax is the Lifeblood of Community,
+        <span class="gradient-text">let it be the Help to our Society</span>
+      </h1>
+
+      <p class="hero-copy">
+        A simpler way to apply for social assistance, submit requirements,
+        and schedule appointments. Keep every step organized with one clear,
+        accessible digital experience for applicants and DSWD staff.
+      </p>
+
+      <div class="hero-buttons">
+        <a class="btn btn-primary" href="staff.html">Staff →</a>
+        <a class="btn btn-secondary" href="applicant.html">Applicant ↗</a>
+      </div>
+
+      <div class="trust-note">
+        Designed to make assistance services easier to navigate.
+      </div>
+    </div>
+
+    <div class="dashboard">
+      <div class="dash-top">
+        <span>Aid Assistance Portal</span>
+      </div>
+
+      <div class="dash-content">
+        <div class="dash-heading">
+          <div>
+            <h3>Overview dashboard</h3>
+            <p>Welcome back. Here's your service summary.</p>
+          </div>
+          <span class="dash-tag">● System online</span>
+        </div>
+
+        <div class="stat-grid">
+          <div class="stat">
+            <div class="stat-label">Applications</div>
+            <div class="stat-number">1,284</div>
+            <div class="stat-foot">Status overview</div>
+          </div>
+
+          <div class="stat">
+            <div class="stat-label">For review</div>
+            <div class="stat-number">128</div>
+            <div class="stat-foot">Needs attention</div>
+          </div>
+
+          <div class="stat">
+            <div class="stat-label">Appointments</div>
+            <div class="stat-number">86</div>
+            <div class="stat-foot">Scheduled</div>
+          </div>
+        </div>
+
+        <div class="chart-card">
+          <div class="chart-head">
+            <span>Application activity</span>
+            <small>Last 7 days</small>
+          </div>
+
+          <div class="chart">
+            <span class="bar" style="height:38%"></span>
+            <span class="bar" style="height:58%"></span>
+            <span class="bar" style="height:46%"></span>
+            <span class="bar" style="height:76%"></span>
+            <span class="bar" style="height:63%"></span>
+            <span class="bar" style="height:88%"></span>
+            <span class="bar" style="height:70%"></span>
+            <span class="bar" style="height:96%"></span>
+            <span class="bar" style="height:77%"></span>
+          </div>
+
+          <div class="chart-labels">
+            <span>Mon</span><span>Tue</span><span>Wed</span>
+            <span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="social-proof">
+  <div class="container proof-inner">
+    <div class="dswd-logo">
+      <img class="seal" src="dswd.jpg" alt="DSWD logo">
+      <span>
+        DSWD-inspired service portal
+        <small style="display:block;color:#667085;font-size:10px;margin-top:4px">
+          Digital assistance experience
+        </small>
+      </span>
+    </div>
+
+    <div class="proof-text">
+      <strong>Built around community needs</strong>
+      <br>Designed for clear, organized assistance journeys
+    </div>
+  </div>
+</div>
+
+<section class="features" id="features">
+  <div class="container">
+    <div class="section-head">
+      <div class="kicker">Everything in one place</div>
+      <h2>Tools that make every step clearer</h2>
+      <p>
+        From submitting an application to reviewing cases,
+        keep assistance workflows organized and easy to follow.
+      </p>
+    </div>
+
+    <div class="feature-grid">
+      <article class="feature-card">
+        <div class="feature-icon">▦</div>
+        <h3>Task Management</h3>
+        <p>
+          Organize applications with boards, lists, and calendar views.
+          See what's pending, in progress, or ready for the next step.
+        </p>
+      </article>
+
+      <article class="feature-card">
+        <div class="feature-icon">♙</div>
+        <h3>Applicant Dashboard</h3>
+        <p>
+          Fill out an application, attach supporting documents,
+          choose an available appointment, and track updates in one place.
+        </p>
+      </article>
+
+      <article class="feature-card">
+        <div class="feature-icon">◫</div>
+        <h3>Staff Dashboard</h3>
+        <p>
+          Review submissions, check requirements, update application statuses,
+          and manage appointment schedules efficiently.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="how-it-works">
+  <div class="container">
+    <div class="section-head">
+      <div class="kicker">Simple by design</div>
+      <h2>How it works</h2>
+      <p>A straightforward process helps applicants and staff stay organized.</p>
+    </div>
+
+    <div class="steps-grid">
+      <article class="step">
+        <div class="step-number">01</div>
+        <h3>Create an account or log in</h3>
+        <p>Use your account to access the portal. Staff and applicants have separate entry points.</p>
+      </article>
+
+      <article class="step">
+        <div class="step-number">02</div>
+        <h3>Submit or manage an application</h3>
+        <p>Applicants fill out forms and upload requirements. Staff review and process applications.</p>
+      </article>
+
+      <article class="step">
+        <div class="step-number">03</div>
+        <h3>Manage your next steps</h3>
+        <p>Track application updates, check appointment details, and follow portal instructions.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="requirements" id="requirements">
+  <div class="container requirements-grid">
+
+    <div class="requirement-visual">
+      <div class="paper">
+        <div class="paper-header">
+          <img class="paper-seal" src="dswd.jpg" alt="DSWD logo">
+          <div>
+            <strong>ASSISTANCE APPLICATION</strong>
+            <small>Applicant requirements checklist</small>
+          </div>
+        </div>
+
+        <div class="paper-title">Supporting Documents</div>
+        <div class="paper-line"></div>
+        <div class="paper-line short"></div>
+        <div class="paper-line"></div>
+        <div class="paper-line short"></div>
+        <div class="paper-line"></div>
+        <div class="paper-stamp">FOR REVIEW</div>
+      </div>
+    </div>
+
+    <div class="requirements-copy">
+      <div class="kicker">Before you apply</div>
+      <h2>Prepare your requirements</h2>
+
+      <p>
+        Requirements may differ depending on the type of assistance
+        and your situation. Check the latest official guidance or contact
+        your local DSWD office before submitting documents.
+      </p>
+
+      <ul class="check-list">
+        <li>
+          <span>✓</span>
+          <div>
+            <strong>Valid identification</strong><br>
+            Prepare a valid ID or other identity documents requested.
+          </div>
+        </li>
+
+        <li>
+          <span>✓</span>
+          <div>
+            <strong>Personal information</strong><br>
+            Provide your full name, current address, and contact details.
+          </div>
+        </li>
+
+        <li>
+          <span>✓</span>
+          <div>
+            <strong>Supporting documents</strong><br>
+            Upload clear photos or scans of required documents.
+          </div>
+        </li>
+
+        <li>
+          <span>✓</span>
+          <div>
+            <strong>Case-specific paperwork</strong><br>
+            Medical, burial, educational, or crisis assistance may require different records.
+          </div>
+        </li>
+      </ul>
+
+      <div class="quote-card">
+        <blockquote>
+          "Having the steps and requirements in one place would make
+          it easier for applicants to know what to prepare and what to do next."
+        </blockquote>
+
+        <div class="quote-person">
+          Illustrative applicant feedback
+          <small>Sample testimonial for prototype display</small>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="faq">
+  <div class="container">
+    <div class="section-head">
+      <div class="kicker">Need to know</div>
+      <h2>Frequently asked questions</h2>
+      <p>Quick answers to common questions about applying for assistance.</p>
+    </div>
+
+    <div class="faq">
+
+      <div class="faq-item open">
+        <button class="faq-question" aria-expanded="true">
+          <span>1. What types of assistance can I apply for?</span>
+          <span>+</span>
+        </button>
+        <div class="faq-answer">
+          Programs may include medical, burial, educational, and other crisis
+          assistance, depending on current programs and eligibility.
+          Confirm the available assistance with your local DSWD office.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          <span>2. What documents do I need to submit?</span>
+          <span>+</span>
+        </button>
+        <div class="faq-answer">
+          Requirements depend on your situation and the assistance requested.
+          You may need valid identification and supporting documents.
+          Follow the latest official checklist from DSWD.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          <span>3. Does applying guarantee cash assistance?</span>
+          <span>+</span>
+        </button>
+        <div class="faq-answer">
+          No. Applications are subject to eligibility rules, assessment,
+          document verification, and the availability of the relevant program.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          <span>4. How can I check my application status?</span>
+          <span>+</span>
+        </button>
+        <div class="faq-answer">
+          If supported by the system, log in to your applicant dashboard
+          to check status updates and follow-up instructions. You can also
+          contact the DSWD office handling your application.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          <span>5. Do I need an appointment before visiting an office?</span>
+          <span>+</span>
+        </button>
+        <div class="faq-answer">
+          Appointment procedures vary by office and program. Check your local
+          office's official instructions before visiting.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container">
+    <div class="cta-inner">
+      <div>
+        <h2>Ready to take the next step?</h2>
+        <p>Choose the right portal to start or manage an assistance request.</p>
+      </div>
+
+      <div class="hero-buttons">
+        <a class="btn" href="applicant.html">Applicant Portal ↗</a>
+        <a class="btn" href="staff.html">Staff Portal ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="container footer-inner">
+    <a class="brand" href="#home">
+      <img class="brand-mark" src="dswd.jpg" alt="DSWD logo">
+      <span class="brand-copy">
+        DSWD Aid Assistance
+        <small>Appointment Scheduling System</small>
+      </span>
+    </a>
+
+    <span>Academic prototype · Not an official DSWD website</span>
+
+    <div class="footer-links">
+      <a href="#features">Features</a>
+      <a href="#faq">FAQs</a>
+    </div>
+  </div>
+</footer>
+
+<div class="notice" id="notice" role="status" aria-live="polite"></div>
+
+</div>
+
+<script>
+const notice = document.getElementById("notice");
+let noticeTimer;
+
+function showNotice(message) {
+  notice.textContent = message;
+  notice.classList.add("show");
+
+  clearTimeout(noticeTimer);
+
+  noticeTimer = setTimeout(() => {
+    notice.classList.remove("show");
+  }, 3200);
+}
+
+document.querySelectorAll(".faq-question").forEach((button) => {
+  button.addEventListener("click", () => {
+    const item = button.closest(".faq-item");
+    const isOpen = item.classList.toggle("open");
+
+    button.setAttribute("aria-expanded", String(isOpen));
+  });
+});
+
+</script>
+
+</body>
+</html>
